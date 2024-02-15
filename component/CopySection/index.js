@@ -1,20 +1,22 @@
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Copy } from "lucide-react";
+import useCopy from "@/hooks/useCopy";
 
 import styles from "@/component/CopySection/index.module.css";
 
 const CopySection = (props) => {
   const { roomId } = props;
+  const [copiedText, copy] = useCopy()
 
   return (
-    <div className={styles.copyContainer}>
+    <div  className={styles.copyContainer}>
       <div className={styles.copyHeading}>Copy Room ID:</div>
       <hr />
       <div className={styles.copyDescription}>
-        <span>{roomId}</span>
-        <CopyToClipboard text={roomId}>
-          <Copy className="ml-3 cursor-pointer" />
-        </CopyToClipboard>
+        <span >{roomId}</span>
+        {/* <CopyToClipboard text={roomId}> */}
+          <Copy onClick={() => copy(roomId)} className="ml-3 cursor-pointer" />
+        {/* </CopyToClipboard> */}
       </div>
     </div>
   );
